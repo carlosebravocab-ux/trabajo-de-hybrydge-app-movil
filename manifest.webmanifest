@@ -1,0 +1,33 @@
+{
+  "id": "./",
+  "name": "Hybrigde - Comunidad universitaria",
+  "short_name": "Hybrigde",
+  "description": "Consulta tus materias, calificaciones y actividad universitaria.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5f7fc",
+  "theme_color": "#315be8",
+  "icons": [
+    {
+      "src": "assets/hybrigde-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/hybrigde-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/hybrigde-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
