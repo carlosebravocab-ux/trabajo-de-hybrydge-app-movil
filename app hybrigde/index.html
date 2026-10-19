@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f5f7fc" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta
+      name="description"
+      content="Inicia sesión y consulta tus materias y calificaciones en Hybrigde."
+    />
+    <title>Iniciar sesión | Hybrigde</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="assets/hybrigde-icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Hybrigde, inicio">
+        <span class="brand-mark" aria-hidden="true">H</span>
+        <span>hybrigde</span>
+      </a>
+      <div class="header-actions">
+        <button class="install-button" id="install-button" type="button" hidden>
+          Instalar app
+        </button>
+        <button
+          class="theme-toggle"
+          id="theme-toggle"
+          type="button"
+          aria-label="Activar modo oscuro"
+          aria-pressed="false"
+        >
+          <span class="theme-icon" id="theme-icon" aria-hidden="true">☾</span>
+          <span id="theme-label">Modo oscuro</span>
+        </button>
+        <button class="logout-button" id="logout-button" type="button" hidden>
+          Cerrar sesión
+        </button>
+      </div>
+    </header>
+    <p class="install-message" id="install-message" role="status" aria-live="polite" hidden></p>
+
+    <main class="page-main">
+      <section class="login-card" id="login-view" aria-labelledby="welcome-heading">
+        <div class="card-heading">
+          <p class="eyebrow">Tu espacio universitario</p>
+          <h1 id="welcome-heading">Bienvenido</h1>
+          <p class="intro">Inicia sesión para continuar en Hybrigde.</p>
+        </div>
+
+        <form id="login-form">
+          <div class="form-field">
+            <label for="email">Correo electrónico</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="nombre@universidad.edu"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="password">Contraseña</label>
+            <div class="password-input">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Escribe tu contraseña"
+                autocomplete="current-password"
+                required
+              />
+              <button
+                class="password-toggle"
+                id="password-toggle"
+                type="button"
+                aria-label="Mostrar contraseña"
+                aria-pressed="false"
+              >
+                Mostrar
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <a id="forgot-password" href="#forgot-password">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+
+          <button class="submit-button" type="submit">Iniciar sesión</button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="dashboard" id="dashboard-view" aria-label="Panel del alumno" hidden>
+        <aside class="dashboard-sidebar">
+          <div class="student-summary">
+            <span class="avatar" id="student-avatar" aria-hidden="true">A</span>
+            <div>
+              <p class="student-name" id="sidebar-student-name">Alumno</p>
+              <p class="student-role">Estudiante</p>
+            </div>
+          </div>
+
+          <nav class="dashboard-nav" aria-label="Navegación del alumno">
+            <button class="nav-item is-active" type="button" data-view="overview" aria-current="page">
+              <span aria-hidden="true">⌂</span> Inicio
+            </button>
+            <button class="nav-item" type="button" data-view="profile">
+              <span aria-hidden="true">◎</span> Mi perfil
+            </button>
+            <button class="nav-item" type="button" data-view="subjects">
+              <span aria-hidden="true">▤</span> Materias
+            </button>
+            <button class="nav-item" type="button" data-view="grades">
+              <span aria-hidden="true">▥</span> Calificaciones
+            </button>
+          </nav>
+          <p class="demo-note">Vista de demostración</p>
+        </aside>
+
+        <div class="dashboard-content">
+          <section class="dashboard-panel" data-panel="overview" aria-labelledby="dashboard-heading">
+            <div class="dashboard-heading">
+              <div>
+                <p class="eyebrow">Panel del alumno</p>
+                <h1 id="dashboard-heading">¡Hola, <span id="welcome-name">Alumno</span>!</h1>
+                <p class="intro">Aquí tienes un resumen de tu actividad académica.</p>
+              </div>
+              <span class="term-badge">Ciclo 2026</span>
+            </div>
+
+            <div class="stat-grid">
+              <article class="stat-card">
+                <span class="stat-icon" aria-hidden="true">▤</span>
+                <p>Materias inscritas</p>
+                <strong>4</strong>
+                <span class="stat-detail">Este ciclo</span>
+              </article>
+              <article class="stat-card">
+                <span class="stat-icon grade-icon" aria-hidden="true">★</span>
+                <p>Promedio general</p>
+                <strong>8.7</strong>
+                <span class="stat-detail">De 10 puntos</span>
+              </article>
+              <article class="stat-card">
+                <span class="stat-icon task-icon" aria-hidden="true">✓</span>
+                <p>Estado académico</p>
+                <strong class="status-value">Activo</strong>
+                <span class="stat-detail">Ciclo en curso</span>
+              </article>
+            </div>
+
+            <div class="engagement-grid">
+              <article class="content-card engagement-card">
+                <div class="engagement-icon delivery-icon" aria-hidden="true">↗</div>
+                <div class="engagement-copy">
+                  <p class="eyebrow">Constancia académica</p>
+                  <h2>Racha de entregas</h2>
+                  <p>Registra cada trabajo que entregues.</p>
+                </div>
+                <div class="engagement-footer">
+                  <strong><span id="delivery-count">0</span> <span class="engagement-unit" id="delivery-unit">trabajos</span></strong>
+                  <button class="text-button" id="record-delivery" type="button">Registrar entrega</button>
+                </div>
+                <p class="engagement-message" id="delivery-message" role="status" aria-live="polite"></p>
+              </article>
+
+              <article class="content-card engagement-card activity-card">
+                <div class="engagement-icon activity-icon" aria-hidden="true">◷</div>
+                <div class="engagement-copy">
+                  <p class="eyebrow">Tu participación</p>
+                  <h2>Actividad</h2>
+                  <p>Se suma una conexión cada vez que inicias sesión.</p>
+                </div>
+                <div class="engagement-footer">
+                  <strong><span id="login-count">0</span> <span class="engagement-unit" id="login-unit">conexiones</span></strong>
+                  <span class="activity-label"><span class="online-dot"></span> Cuenta activa</span>
+                </div>
+              </article>
+            </div>
+
+            <div class="dashboard-columns">
+              <article class="content-card home-subjects-card">
+                <div class="section-title">
+                  <div>
+                    <p class="eyebrow">Tu ciclo</p>
+                    <h2>Mis materias <span class="home-subject-count">· 4 inscritas</span></h2>
+                  </div>
+                  <button class="text-button" type="button" data-go="subjects">Ver todas</button>
+                </div>
+                <ul class="home-course-list">
+                  <li>
+                    <span class="home-course-mark home-mark-blue" aria-hidden="true">P</span>
+                    <span class="home-course-info"><strong>Programación web</strong><small>Laura Méndez</small></span>
+                    <span class="course-code">INF-204</span>
+                  </li>
+                  <li>
+                    <span class="home-course-mark home-mark-purple" aria-hidden="true">B</span>
+                    <span class="home-course-info"><strong>Bases de datos</strong><small>Jorge Ramírez</small></span>
+                    <span class="course-code">INF-210</span>
+                  </li>
+                  <li>
+                    <span class="home-course-mark home-mark-green" aria-hidden="true">M</span>
+                    <span class="home-course-info"><strong>Matemáticas aplicadas</strong><small>Elena Torres</small></span>
+                    <span class="course-code">MAT-115</span>
+                  </li>
+                </ul>
+              </article>
+
+              <article class="content-card grade-preview">
+                <div class="section-title">
+                  <div>
+                    <p class="eyebrow">Rendimiento</p>
+                    <h2>Últimas calificaciones</h2>
+                  </div>
+                  <button class="text-button" type="button" data-go="grades">Ver todas</button>
+                </div>
+                <ul class="grade-list">
+                  <li><span>Programación web</span><strong>9.2</strong></li>
+                  <li><span>Bases de datos</span><strong>8.5</strong></li>
+                  <li><span>Matemáticas aplicadas</span><strong>8.4</strong></li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section class="dashboard-panel" data-panel="profile" aria-labelledby="profile-heading" hidden>
+            <div class="dashboard-heading">
+              <div>
+                <p class="eyebrow">Tu información</p>
+                <h1 id="profile-heading">Mi perfil</h1>
+                <p class="intro">Consulta los datos de tu cuenta de estudiante.</p>
+              </div>
+            </div>
+            <article class="content-card profile-card">
+              <div class="profile-banner">
+                <span class="avatar profile-avatar" id="profile-avatar" aria-hidden="true">A</span>
+                <div><h2 id="profile-name">Alumno</h2><p>Estudiante · Ciclo 2026</p></div>
+              </div>
+              <dl class="profile-details">
+                <div><dt>Nombre</dt><dd id="profile-full-name">Alumno</dd></div>
+                <div><dt>Correo electrónico</dt><dd id="profile-email">—</dd></div>
+                <div><dt>Programa académico</dt><dd>Licenciatura en Sistemas</dd></div>
+                <div><dt>Estado</dt><dd><span class="active-status">Activo</span></dd></div>
+              </dl>
+              <p class="demo-disclaimer">Los datos académicos de esta pantalla son de ejemplo.</p>
+            </article>
+          </section>
+
+          <section class="dashboard-panel" data-panel="subjects" aria-labelledby="subjects-heading" hidden>
+            <div class="dashboard-heading">
+              <div>
+                <p class="eyebrow">Ciclo 2026</p>
+                <h1 id="subjects-heading">Materias</h1>
+                <p class="intro">Estas son tus materias inscritas actualmente.</p>
+              </div>
+            </div>
+            <article class="content-card table-card subjects-card">
+              <div class="subjects-summary">
+                <div>
+                  <p class="eyebrow">Tu horario académico</p>
+                  <h2>Materias inscritas <span>·  Ciclo 2026</span></h2>
+                </div>
+                <span class="subjects-count"><span aria-hidden="true">▤</span> 4 materias</span>
+              </div>
+              <div class="subjects-grid">
+                <article class="subject-card subject-blue" aria-label="Programación web, INF-204">
+                  <div class="subject-card-heading">
+                    <span class="subject-mark" aria-hidden="true">P</span>
+                    <span class="subject-code">INF-204</span>
+                  </div>
+                  <h3>Programación web</h3>
+                  <p class="subject-teacher"><span class="detail-icon" aria-hidden="true">◎</span> Laura Méndez</p>
+                  <div class="subject-card-footer">
+                    <span class="detail-icon" aria-hidden="true">◷</span>
+                    <span><small>Horario</small>Lun. y mié. · 10:00</span>
+                    <span class="subject-status"><span class="online-dot"></span> Inscrita</span>
+                  </div>
+                </article>
+
+                <article class="subject-card subject-purple" aria-label="Bases de datos, INF-210">
+                  <div class="subject-card-heading">
+                    <span class="subject-mark" aria-hidden="true">B</span>
+                    <span class="subject-code">INF-210</span>
+                  </div>
+                  <h3>Bases de datos</h3>
+                  <p class="subject-teacher"><span class="detail-icon" aria-hidden="true">◎</span> Jorge Ramírez</p>
+                  <div class="subject-card-footer">
+                    <span class="detail-icon" aria-hidden="true">◷</span>
+                    <span><small>Horario</small>Mar. y jue. · 12:00</span>
+                    <span class="subject-status"><span class="online-dot"></span> Inscrita</span>
+                  </div>
+                </article>
+
+                <article class="subject-card subject-green" aria-label="Matemáticas aplicadas, MAT-115">
+                  <div class="subject-card-heading">
+                    <span class="subject-mark" aria-hidden="true">M</span>
+                    <span class="subject-code">MAT-115</span>
+                  </div>
+                  <h3>Matemáticas aplicadas</h3>
+                  <p class="subject-teacher"><span class="detail-icon" aria-hidden="true">◎</span> Elena Torres</p>
+                  <div class="subject-card-footer">
+                    <span class="detail-icon" aria-hidden="true">◷</span>
+                    <span><small>Horario</small>Lun. y vie. · 08:00</span>
+                    <span class="subject-status"><span class="online-dot"></span> Inscrita</span>
+                  </div>
+                </article>
+
+                <article class="subject-card subject-amber" aria-label="Comunicación académica, HUM-101">
+                  <div class="subject-card-heading">
+                    <span class="subject-mark" aria-hidden="true">C</span>
+                    <span class="subject-code">HUM-101</span>
+                  </div>
+                  <h3>Comunicación académica</h3>
+                  <p class="subject-teacher"><span class="detail-icon" aria-hidden="true">◎</span> Daniela Cruz</p>
+                  <div class="subject-card-footer">
+                    <span class="detail-icon" aria-hidden="true">◷</span>
+                    <span><small>Horario</small>Mié. y vie. · 14:00</span>
+                    <span class="subject-status"><span class="online-dot"></span> Inscrita</span>
+                  </div>
+                </article>
+              </div>
+              <p class="demo-disclaimer">Materias y horarios de ejemplo.</p>
+            </article>
+          </section>
+
+          <section class="dashboard-panel" data-panel="grades" aria-labelledby="grades-heading" hidden>
+            <div class="dashboard-heading">
+              <div>
+                <p class="eyebrow">Ciclo 2026</p>
+                <h1 id="grades-heading">Calificaciones</h1>
+                <p class="intro">Consulta tu rendimiento en las materias del ciclo.</p>
+              </div>
+              <span class="term-badge">Promedio: 8.7 / 10</span>
+            </div>
+            <article class="content-card table-card">
+              <div class="table-scroll">
+                <table>
+                  <thead><tr><th>Materia</th><th>Parcial 1</th><th>Parcial 2</th><th>Promedio</th><th>Estado</th></tr></thead>
+                  <tbody>
+                    <tr><td>Programación web</td><td>9.0</td><td>9.4</td><td><strong>9.2</strong></td><td><span class="grade-status">Aprobada</span></td></tr>
+                    <tr><td>Bases de datos</td><td>8.0</td><td>9.0</td><td><strong>8.5</strong></td><td><span class="grade-status">Aprobada</span></td></tr>
+                    <tr><td>Matemáticas aplicadas</td><td>8.2</td><td>8.6</td><td><strong>8.4</strong></td><td><span class="grade-status">Aprobada</span></td></tr>
+                    <tr><td>Comunicación académica</td><td>8.8</td><td>8.2</td><td><strong>8.5</strong></td><td><span class="grade-status">Aprobada</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="demo-disclaimer">Calificaciones de ejemplo, no oficiales.</p>
+            </article>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Hybrigde · Tu comunidad universitaria</p>
+    </footer>
+  </body>
+</html>
